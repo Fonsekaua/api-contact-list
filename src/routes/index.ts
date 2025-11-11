@@ -1,10 +1,10 @@
 import express from 'express';
-import postRouter from './post'
-import getRouter from './get'
-import delRouter from './del'
+import { createContactController, deleteContactController, getContactsController } from '../controllers/contact';
+import { privateRequest } from '../middlewares/auth';
 const router = express.Router();
 
-router.use('/contato',postRouter)
-router.use("/contatos",getRouter)
-router.use("/contato",delRouter)
+router.post('/contato', privateRequest, createContactController)
+router.get("/contatos", getContactsController)
+router.delete("/contato", privateRequest, deleteContactController)
+
 export default router;
